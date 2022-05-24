@@ -39,14 +39,14 @@ const styles = StyleSheet.create({
   currentMonthStyle: {
     fontSize: 20,
     fontWeight: "bold",
-    color: "white",
+    // color: "white",
     margin: 5,
     marginLeft: 0,
   },
   thisYear: {
     fontSize: 17,
     fontWeight: "bold",
-    color: "white",
+    // color: "white",
   },
 });
 

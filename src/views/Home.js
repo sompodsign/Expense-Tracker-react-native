@@ -22,6 +22,7 @@ import {
 import Greeting from "../components/greeting";
 import TotalCard from "../components/totalCard";
 import MoneyInput from "../components/moneyInput";
+import TransactionHistory from "../components/transactionHistory";
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -67,9 +68,8 @@ const App: () => Node = () => {
       </View>
         <TotalCard />
       <MoneyInput />
-      <ScrollView>
 
-      </ScrollView>
+        <TransactionHistory />
     </SafeAreaView>
   );
 };
