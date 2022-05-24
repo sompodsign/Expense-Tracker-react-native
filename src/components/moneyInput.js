@@ -21,7 +21,7 @@ const MoneyInput = () => {
         underlineColorAndroid='transparent'
       />
       <TouchableOpacity>
-        <Text>Add</Text>
+        <Text style={{...styles.button, backgroundColor: colors.primary}}>Add</Text>
       </TouchableOpacity>
     </View>
   );
@@ -32,6 +32,22 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     margin: 10,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: "#ccc",
+    padding: 10,
+    borderRadius: 10,
+    margin: 10,
+  },
+  button: {
+    padding: 16,
+    borderRadius: 26,
+    margin: 6,
+    fontSize: 17,
+    color: "#fff",
+    fontWeight: "normal",
+    textAlign: "center",
   },
 });
 
