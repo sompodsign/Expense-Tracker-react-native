@@ -4,9 +4,10 @@
 
 import React from 'react'
 import {AppRegistry} from 'react-native';
-import App from './src/views/Home';
 import {name as appName} from './app.json';
 import { configureFonts, DefaultTheme, Provider as PaperProvider } from "react-native-paper";
+// import App from "./src/App";
+import Routes from "./src/routes/Routes";
 
 const fontConfig = {
   web: {
@@ -86,7 +87,7 @@ const theme = {
 export default function Main() {
   return (
     <PaperProvider theme={theme}>
-      <App />
+      <Routes />
     </PaperProvider>
   );
 }

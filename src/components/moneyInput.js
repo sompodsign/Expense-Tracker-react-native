@@ -2,21 +2,28 @@ import * as React from 'react';
 import { useTheme } from "react-native-paper";
 import { View, TextInput, StyleSheet, TouchableOpacity, Text } from "react-native";
 
+
+
 const MoneyInput = () => {
-  const [text, setText] = React.useState("");
   const {colors} = useTheme();
+  const [text, setText] = React.useState("");
+
+
 
   return (
     <View style={{...styles.container, backgroundColor: colors.accent}}>
       <TextInput
         style={styles.input}
         placeholder="Description"
+        placeholderTextColor={colors.primary}
         value={text}
       />
 
       <TextInput
         style={styles.input}
         placeholder="৳ Amount"
+        placeholderTextColor={colors.primary}
+        keyboardType={'numeric'}
         value={text}
         underlineColorAndroid='transparent'
       />
@@ -51,4 +58,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MoneyInput
+export default MoneyInput;
