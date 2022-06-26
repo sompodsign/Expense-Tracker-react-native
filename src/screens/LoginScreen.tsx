@@ -1,52 +1,25 @@
 import React from 'react';
+
+
 import {
+  Button,
   SafeAreaView,
-  ScrollView,
   StatusBar,
   StyleSheet,
   Text,
   useColorScheme,
-  View,
-} from 'react-native';
+  View
+} from "react-native";
 
 import {
   Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import { Greeting } from "../components/greeting";
-import { TotalCard } from "../components/totalCard";
-import MoneyInput from "../components/moneyInput";
-import TransactionHistory from "../components/transactionHistory";
-import { useTheme } from "react-native-paper";
 
-const Section = (): JSX.Element => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View>
-      <Text
-        style={[
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
+import { useTheme, TextInput } from "react-native-paper";
+// import { TextInput } from "react-native";
 
-      </Text>
-      <Text
-        style={[
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
 
-      </Text>
-    </View>
-  );
-};
-
-const LoginScreen: () => JSX.Element = () => {
+export default function LoginScreen({ navigation }: any) {
   const {colors} = useTheme();
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
@@ -54,25 +27,44 @@ const LoginScreen: () => JSX.Element = () => {
     height: "100%",
   };
 
+
+  // @ts-ignore
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar backgroundColor={colors.primary}/>
+      <View>
+        <Text style={{...style.header, color: colors.text}}>Login to your account</Text>
+      </View>
+      <View style={style.inputContainer}>
+      <TextInput
+        label="Email"
+        onChangeText={(text) => {}}
+
+      />
+      <TextInput
+        label="Password"
+        onChangeText={(text) => {}}
+
+        placeholder="useless placeholder"
+        keyboardType="numeric"
+      />
+      </View>
 
     </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({
-  greetingBar: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 20,
+const style = StyleSheet.create({
+  header: {
+    paddingTop: '20%',
+    paddingLeft: '5%',
+    fontSize: 50,
+    fontWeight: 'bold',
   },
-  greeting: {
-    paddingLeft: 10
-  }
+    inputContainer: {
+    padding: '5%',
+    }
+}
+);
 
 
-});
-
-export default LoginScreen;

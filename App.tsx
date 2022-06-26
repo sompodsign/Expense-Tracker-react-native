@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import HomeScreen from "./src/screens/HomeScreen";
 import LoginScreen from "./src/screens/LoginScreen";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 
 
@@ -19,11 +20,17 @@ const theme = {
   },
 };
 
+const Stack = createNativeStackNavigator();
+
 export default function App() {
   return <NavigationContainer>{
     <PaperProvider theme={theme}>
-      <LoginScreen />
-      <HomeScreen />
+      <Stack.Navigator screenOptions={{
+        headerShown: false
+      }}>
+        <Stack.Screen component={LoginScreen}  name="Login"/>
+        <Stack.Screen component={HomeScreen}  name="Home"/>
+      </Stack.Navigator>
     </PaperProvider>
   }
   </NavigationContainer>;
