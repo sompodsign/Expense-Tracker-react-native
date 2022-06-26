@@ -46,7 +46,7 @@ const Section = (): JSX.Element => {
   );
 };
 
-const HomeScreen: () => JSX.Element = () => {
+const LoginScreen: () => JSX.Element = () => {
   const {colors} = useTheme();
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
@@ -57,15 +57,7 @@ const HomeScreen: () => JSX.Element = () => {
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar backgroundColor={colors.primary}/>
-      <View style={styles.greetingBar}>
-        <View style={styles.greeting}>
-          <Greeting />
-        </View>
-      </View>
-      <TotalCard />
-      <MoneyInput />
 
-      <TransactionHistory />
     </SafeAreaView>
   );
 };
@@ -83,4 +75,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default HomeScreen;
+export default LoginScreen;

@@ -2,12 +2,16 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { FlatList, Text, View } from "react-native";
 import { useTheme, withTheme } from "react-native-paper";
-import Icon from "react-native-vector-icons/FontAwesome";
+import Ionicons from '@expo/vector-icons/Ionicons';
+
 
 function TransactionHistory() {
-  const transactions = [{ "id": 1, "type": "transactionHistory", "amount": 45, "crrency": "BDT" }];
+
   const { colors } = useTheme();
-  const myIcon = <Icon name="rocket" size={30} color="#900" />;
+
+  const transactions = [{ "id": 1, "type": "transactionHistory", "amount": 45, "crrency": "BDT" }];
+  // @ts-ignore
+  const upIcon = <Ionicons name="arrow-up-outline" size={30} color={colors.primary} />;
 
 
   return (
@@ -20,13 +24,13 @@ function TransactionHistory() {
 
       <View style={styles.transaction}>
         <View>
-          <Icon name="upload" size={30} color={colors.primary} />
+          {upIcon}
         </View>
-        <View style={styles.tableMargin}>
-          <Text style={styles.transactionTitle}>Bus Vara</Text>
-          <Text>Amount: 40</Text>
+        <View style={{ ...styles.tableMargin }}>
+          <Text style={{ ...styles.transactionTitle, color: colors.text }}>Bus Vara</Text>
+          <Text style={{ color: colors.text }}>Amount: 40</Text>
         </View>
-        <Text style={styles.tableMargin}>20-05-2022</Text>
+        <Text style={{ ...styles.tableMargin, color: colors.text }}>20-05-2022</Text>
       </View>
 
       {/*<View style={styles.transaction}>*/}
