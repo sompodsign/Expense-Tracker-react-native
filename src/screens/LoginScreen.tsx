@@ -13,11 +13,13 @@ import {
 import { Colors } from "react-native/Libraries/NewAppScreen";
 
 import { TextInput } from "react-native";
-import { useTheme } from "react-native-paper";
+import { Checkbox, useTheme } from "react-native-paper";
 
 export default function LoginScreen({ navigation }: any) {
   const { colors } = useTheme();
   const isDarkMode = useColorScheme() === "dark";
+  const [checked, setChecked] = React.useState(false);
+
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
     height: "100%",
@@ -48,6 +50,22 @@ export default function LoginScreen({ navigation }: any) {
         />
       </View>
 
+      {/* Remember Me checkbox */}
+      <View style={style.checkboxContainer}>
+        <Checkbox
+          status={checked ? "checked" : "unchecked"}
+          color={colors.primary}
+          uncheckedColor={colors.primary}
+          onPress={() => {
+            setChecked(!checked);
+          }}
+        />
+        <Text style={{ ...style.checkboxText, color: colors.text }}>
+          Remember Me
+        </Text>
+      </View>
+
+      {/* Login button */}
       <TouchableOpacity>
         <Text style={{ ...style.button, backgroundColor: colors.primary }}>
           Sign in
@@ -81,10 +99,21 @@ const style = StyleSheet.create({
     padding: 16,
     borderRadius: 26,
     margin: 10,
-    marginTop: "10%",
+    marginTop: "6%",
     fontSize: 17,
     color: "#fff",
     fontWeight: "bold",
     textAlign: "center",
+  },
+  checkboxContainer: {
+    alignSelf: "center",
+    flexDirection: "row",
+    marginTop: "2%",
+  },
+  checkboxText: {
+    fontSize: 14,
+    fontWeight: "bold",
+    marginLeft: "1%",
+    marginTop: "2%",
   },
 });
