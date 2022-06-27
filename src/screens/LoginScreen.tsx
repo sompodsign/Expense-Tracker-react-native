@@ -1,5 +1,4 @@
 import React from "react";
-
 import {
   SafeAreaView,
   StatusBar,
@@ -11,21 +10,23 @@ import {
 } from "react-native";
 
 import { Colors } from "react-native/Libraries/NewAppScreen";
-
 import { TextInput } from "react-native";
 import { Checkbox, useTheme } from "react-native-paper";
 
 export default function LoginScreen({ navigation }: any) {
   const { colors } = useTheme();
+
   const isDarkMode = useColorScheme() === "dark";
+
   const [checked, setChecked] = React.useState(false);
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
     height: "100%",
   };
 
-  // @ts-ignore
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar backgroundColor={colors.primary} />
@@ -71,6 +72,18 @@ export default function LoginScreen({ navigation }: any) {
           Sign in
         </Text>
       </TouchableOpacity>
+      {/*Forget password*/}
+      <View style={style.forgetPasswordContainer}>
+        <Text style={{ ...style.forgetPasswordText, color: colors.primary }}>
+          Forgot the password?
+        </Text>
+      </View>
+      <View style={style.signUpContainer}>
+        <Text style={{color: colors.text, ...style.signUp}}>
+          Don't have an account?
+          <Text style={{color: colors.primary}}> Sign up</Text>
+        </Text>
+      </View>
     </SafeAreaView>
   );
 }
@@ -116,4 +129,24 @@ const style = StyleSheet.create({
     marginLeft: "1%",
     marginTop: "2%",
   },
+  signUpContainer: {
+    flexDirection: "column",
+    flex: 1,
+    justifyContent: "flex-end",
+    marginBottom: "10%",
+  },
+  signUp: {
+    fontSize: 14,
+    fontWeight: "bold",
+    marginTop: "2%",
+    alignSelf: "center",
+  },
+  forgetPasswordContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  forgetPasswordText: {
+    fontSize: 17,
+    fontWeight: "bold",
+  }
 });
