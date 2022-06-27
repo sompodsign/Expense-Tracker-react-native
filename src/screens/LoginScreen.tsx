@@ -1,18 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   SafeAreaView,
   StatusBar,
   StyleSheet,
   Text,
+  TextInput,
   TouchableOpacity,
   useColorScheme,
   View
 } from "react-native";
+import * as SecureStore from "expo-secure-store";
+
 
 import { Colors } from "react-native/Libraries/NewAppScreen";
-import { TextInput } from "react-native";
 import { Checkbox, useTheme } from "react-native-paper";
-import axios from "axios";
 import client from "../axiosConfig";
 
 export default function LoginScreen({ navigation }: any) {
@@ -23,6 +24,14 @@ export default function LoginScreen({ navigation }: any) {
   const [checked, setChecked] = React.useState(false);
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+
+  async function save(key: string, value: string) {
+    await SecureStore.setItemAsync(key, value);
+  }
+
+  async function getValueFor(key: string) {
+    return await SecureStore.getItemAsync(key);
+  }
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -37,9 +46,17 @@ export default function LoginScreen({ navigation }: any) {
     )
     console.log(data);
     if (data.token) {
-      navigation.navigate('Home');
+      await save('token', data.token);
+      // navigation.navigate('Home');
     }
   }
+
+  useEffect(() => {
+    const token = getValueFor('token');
+    if (token) {
+      navigation.navigate('Home');
+    }
+  },[]);
 
   return (
     <SafeAreaView style={backgroundStyle}>
