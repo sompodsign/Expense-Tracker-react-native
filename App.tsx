@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { AppRegistry, useColorScheme } from "react-native";
 import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
 import { NavigationContainer } from '@react-navigation/native';
 

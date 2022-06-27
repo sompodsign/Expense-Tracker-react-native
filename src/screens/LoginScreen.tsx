@@ -6,12 +6,14 @@ import {
   Text,
   TouchableOpacity,
   useColorScheme,
-  View,
+  View
 } from "react-native";
 
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { TextInput } from "react-native";
 import { Checkbox, useTheme } from "react-native-paper";
+import axios from "axios";
+import { axiosInstance } from "../axiosConfig";
 
 export default function LoginScreen({ navigation }: any) {
   const { colors } = useTheme();
@@ -24,8 +26,19 @@ export default function LoginScreen({ navigation }: any) {
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-    height: "100%",
+    height: "100%"
   };
+
+  async function login() {
+    const response = await axiosInstance.post("/login", {
+      email: email,
+      password: password
+    });
+    console.log(response);
+    if (response.status === 200) {
+      navigation.navigate("Home");
+    }
+  }
 
   return (
     <SafeAreaView style={backgroundStyle}>
@@ -38,15 +51,18 @@ export default function LoginScreen({ navigation }: any) {
       {/* Input fields */}
       <View style={style.inputContainer}>
         <TextInput
+          value={email}
+          onChangeText={(text) => setEmail(text)}
           style={{ ...style.input, color: colors.text }}
           placeholder="Email"
           placeholderTextColor={colors.primary}
         />
         <TextInput
           style={{ ...style.input, color: colors.text }}
+          value={password}
+          onChangeText={(text) => setPassword(text)}
           placeholder="Password"
           placeholderTextColor={colors.primary}
-          keyboardType={"numeric"}
           underlineColorAndroid="transparent"
         />
       </View>
@@ -67,7 +83,7 @@ export default function LoginScreen({ navigation }: any) {
       </View>
 
       {/* Login button */}
-      <TouchableOpacity>
+      <TouchableOpacity onPress={login}>
         <Text style={{ ...style.button, backgroundColor: colors.primary }}>
           Sign in
         </Text>
@@ -79,9 +95,9 @@ export default function LoginScreen({ navigation }: any) {
         </Text>
       </View>
       <View style={style.signUpContainer}>
-        <Text style={{color: colors.text, ...style.signUp}}>
+        <Text style={{ color: colors.text, ...style.signUp }}>
           Don't have an account?
-          <Text style={{color: colors.primary}}> Sign up</Text>
+          <Text style={{ color: colors.primary }}> Sign up</Text>
         </Text>
       </View>
     </SafeAreaView>
@@ -93,11 +109,11 @@ const style = StyleSheet.create({
     paddingTop: "20%",
     paddingLeft: "5%",
     fontSize: 50,
-    fontWeight: "bold",
+    fontWeight: "bold"
   },
   inputContainer: {
     padding: "0%",
-    marginTop: "10%",
+    marginTop: "10%"
   },
   input: {
     borderWidth: 1,
@@ -106,7 +122,7 @@ const style = StyleSheet.create({
     borderRadius: 10,
     margin: 10,
     fontSize: 14,
-    fontWeight: "bold",
+    fontWeight: "bold"
   },
   button: {
     padding: 16,
@@ -116,37 +132,37 @@ const style = StyleSheet.create({
     fontSize: 17,
     color: "#fff",
     fontWeight: "bold",
-    textAlign: "center",
+    textAlign: "center"
   },
   checkboxContainer: {
     alignSelf: "center",
     flexDirection: "row",
-    marginTop: "2%",
+    marginTop: "2%"
   },
   checkboxText: {
     fontSize: 14,
     fontWeight: "bold",
     marginLeft: "1%",
-    marginTop: "2%",
+    marginTop: "2%"
   },
   signUpContainer: {
     flexDirection: "column",
     flex: 1,
     justifyContent: "flex-end",
-    marginBottom: "10%",
+    marginBottom: "10%"
   },
   signUp: {
     fontSize: 14,
     fontWeight: "bold",
     marginTop: "2%",
-    alignSelf: "center",
+    alignSelf: "center"
   },
   forgetPasswordContainer: {
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "center"
   },
   forgetPasswordText: {
     fontSize: 17,
-    fontWeight: "bold",
+    fontWeight: "bold"
   }
 });
