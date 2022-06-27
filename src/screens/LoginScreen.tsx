@@ -13,7 +13,7 @@ import { Colors } from "react-native/Libraries/NewAppScreen";
 import { TextInput } from "react-native";
 import { Checkbox, useTheme } from "react-native-paper";
 import axios from "axios";
-import { axiosInstance } from "../axiosConfig";
+import client from "../axiosConfig";
 
 export default function LoginScreen({ navigation }: any) {
   const { colors } = useTheme();
@@ -30,13 +30,14 @@ export default function LoginScreen({ navigation }: any) {
   };
 
   async function login() {
-    const response = await axiosInstance.post("/login", {
-      email: email,
-      password: password
-    });
-    console.log(response);
-    if (response.status === 200) {
-      navigation.navigate("Home");
+    console.log(email, password);
+    const {data} = await client.post(
+      'login/',
+      {'email': email, 'password': password},
+    )
+    console.log(data);
+    if (data.token) {
+      navigation.navigate('Home');
     }
   }
 

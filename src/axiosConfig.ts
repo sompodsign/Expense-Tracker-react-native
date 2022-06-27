@@ -1,3 +1,11 @@
-import axios from "axios";
+import axios from 'axios';
 
-export const axiosInstance = axios.create({ baseURL: 'https://api.shampad.live/api' });
+const client = axios.create({
+  baseURL: "https://api.shampad.live/api",
+  headers: {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+  }
+});
+
+export default client;
